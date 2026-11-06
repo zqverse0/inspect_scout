@@ -122,7 +122,7 @@ async def segment_messages(
     # Resolve model
     model = get_model(model)
 
-    # scout-lite：只有消息来源（Berth 交出的会话没有事件 / 时间线）。
+    # sounding：只有消息来源（Berth 交出的会话没有事件 / 时间线）。
     messages = list(source)
 
     if not messages:

@@ -1,13 +1,13 @@
-# scout-lite 与上游的对应
+# sounding 与上游的对应
 
 基线：inspect_scout `7521262`（本 fork 的 main），inspect_ai `0.3.287.dev30`（基线记录在 `tests/golden/VERSION`）。
 
-scout-lite 只做一件事：对**一个已加载的会话**跑 scout 的扫描器。分析代码摘自 scout，模型层换成只支持
+sounding 对**一个已加载的会话**跑 scout 的扫描器，另加 Jev 逐条判断（`jev.py`，不来自 scout）。分析代码摘自 scout，模型层换成只支持
 OpenAI 兼容接口的薄替身。原则是**能复制就不改写**：改动只限导入路径和删掉单会话走不到的分支。
 
 ## 文件对应
 
-| scout-lite | 来源 | 改动 |
+| sounding | 来源 | 改动 |
 |---|---|---|
 | `_llm_scanner/prompt.py`、`types.py` | `src/inspect_scout/_llm_scanner/` 同名 | 只改导入 |
 | `_llm_scanner/answer.py`、`generate.py`、`structured.py`、`_reducer.py` | 同上 | 只改导入 |
@@ -24,12 +24,13 @@ OpenAI 兼容接口的薄替身。原则是**能复制就不改写**：改动只
 | `_ai/_model_info.json` | inspect_ai 解析后的模型资料库 | 冻结为「名字 → 输入 token 上限」 |
 | `_ai/model.py`、`tool.py`、`util.py` | inspect_ai 模型 / 工具层 | **自写替身**，规则出处见注释 |
 | `berth.py`、`cli.py` | — | 自写：读 Berth 会话、问题配置 → 扫描器 |
+| `jev.py` | — | 自写：Jev 逐条判断与 llm 问题的 `focus`；不用 jev / focus 时扫描与 scout 一致 |
 
 ## 怎么证明一致
 
 `tests/golden/` 是用真 inspect_scout 录下的「发出的每个请求 + 最终结果」，覆盖各答案类型、解析失败重问、
 拒答重试、推理内容回传、结构化与多条结果、工具参数校验失败、过滤工具内容、长会话分段（任一为是 / LLM 合并）、
-关键词扫描，以及模型资料库查找。`tests/test_oracle.py` 要求 scout-lite 逐字段相同。
+关键词扫描，以及模型资料库查找。`tests/test_oracle.py` 要求 sounding 逐字段相同。
 
 ## 同步上游
 

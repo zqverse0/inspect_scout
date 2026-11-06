@@ -1,4 +1,4 @@
-# 摘自 inspect_scout 7521262 src/inspect_scout/_llm_scanner/prompt.py（MIT）。改动：导入改指 scout_lite 的替身。
+# 摘自 inspect_scout 7521262 src/inspect_scout/_llm_scanner/prompt.py（MIT）。改动：导入改指 sounding 的替身。
 DEFAULT_SCANNER_TEMPLATE_PREFIX = """
 You are an expert in LLM transcript analysis. Here is an LLM transcript you will be analyzing to answer a question:
 

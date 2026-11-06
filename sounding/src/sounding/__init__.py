@@ -1,4 +1,4 @@
-"""scout-lite：inspect_scout 单会话扫描的精简版。
+"""sounding：Berth 的会话分析——inspect_scout 单会话扫描的精简版，加 Jev 逐条判断（`jev.py`）。
 
 扫描器的提示、渲染、解析、分段与合并摘自 inspect_scout（见 UPSTREAM.md），对同一会话发出的请求与
 得到的结果与 inspect_scout 一致（tests/golden 对照）。去掉了会话库、批量扫描、结果存储与界面。

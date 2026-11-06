@@ -1,4 +1,4 @@
-"""对照测试：scout-lite 跑同一组场景，请求与结果须与 inspect_scout 录下的 golden 完全一致。"""
+"""对照测试：sounding 跑同一组场景，请求与结果须与 inspect_scout 录下的 golden 完全一致。"""
 
 from __future__ import annotations
 
@@ -30,13 +30,13 @@ def test_matches_inspect_scout(scenario: dict) -> None:
 
 
 def test_model_info_matches_inspect_ai(monkeypatch: pytest.MonkeyPatch) -> None:
-    import scout_lite
+    import sounding
 
     monkeypatch.setenv("BERTH_BASE_URL", "http://127.0.0.1:9/v1")
     monkeypatch.setenv("BERTH_API_KEY", "k")
-    from scout_lite._ai.model import get_model_info
+    from sounding._ai.model import get_model_info
 
     golden = json.loads((GOLDEN / "model_info.json").read_text())
     for name, input_tokens in golden.items():
-        info = get_model_info(scout_lite.get_model(f"openai-api/berth/{name}"))
+        info = get_model_info(sounding.get_model(f"openai-api/berth/{name}"))
         assert (info.input_tokens if info else None) == input_tokens, name

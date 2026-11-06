@@ -1,4 +1,4 @@
-# 摘自 inspect_scout 7521262 src/inspect_scout/_llm_scanner/generate.py（MIT）。改动：导入改指 scout_lite 的替身。
+# 摘自 inspect_scout 7521262 src/inspect_scout/_llm_scanner/generate.py（MIT）。改动：导入改指 sounding 的替身。
 """Reusable answer generation and parsing for scanning pipelines.
 
 Provides :func:`parse_answer` for extracting a :class:`Result` from a

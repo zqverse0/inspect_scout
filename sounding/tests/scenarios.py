@@ -1,6 +1,6 @@
-"""对照场景：同一组场景分别交给 inspect_scout 与 scout_lite，比较发出的请求与最终结果。
+"""对照场景：同一组场景分别交给 inspect_scout 与 sounding，比较发出的请求与最终结果。
 
-`engine` 是被测模块（`inspect_scout` 或 `scout_lite`），两边须提供同名 API。
+`engine` 是被测模块（`inspect_scout` 或 `sounding`），两边须提供同名 API。
 会话是手写的合成数据（不用真实会话，避免把用户内容提交进仓库）。
 """
 

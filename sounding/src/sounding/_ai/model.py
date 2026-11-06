@@ -420,7 +420,7 @@ def get_model(model: str | Model | None = None, *, role: str | None = None) -> M
     provider, _, rest = model.partition("/")
     if provider != "openai-api" or "/" not in rest:
         raise ValueError(
-            f"scout-lite only supports openai-api/<service>/<model>, got {model!r}"
+            f"sounding only supports openai-api/<service>/<model>, got {model!r}"
         )
     service, _, name = rest.partition("/")
     prefix = service.upper().replace("-", "_")
@@ -454,7 +454,7 @@ def count_text_tokens(text: str) -> int:
     # tiktoken 首次使用时下载词表，默认缓存在 /tmp（重启即丢）；改到持久目录，只下载一次。
     os.environ.setdefault(
         "TIKTOKEN_CACHE_DIR",
-        os.path.join(os.path.expanduser("~"), ".cache", "scout-lite", "tiktoken"),
+        os.path.join(os.path.expanduser("~"), ".cache", "sounding", "tiktoken"),
     )
     import tiktoken
 

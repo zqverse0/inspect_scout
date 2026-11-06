@@ -1,4 +1,4 @@
-# 摘自 inspect_scout 7521262 src/inspect_scout/_llm_scanner/answer.py（MIT）。改动：导入改指 scout_lite 的替身。
+# 摘自 inspect_scout 7521262 src/inspect_scout/_llm_scanner/answer.py（MIT）。改动：导入改指 sounding 的替身。
 import re
 from typing import Any, Callable, Literal, Protocol, Sequence, cast, runtime_checkable
 

@@ -44,7 +44,7 @@ from .types import AnswerSpec
 
 logger = getLogger(__name__)
 
-# scout-lite 没有内容过滤（只有消息），保留参数名以与 scout 的签名一致。
+# sounding 没有内容过滤（只有消息），保留参数名以与 scout 的签名一致。
 TranscriptContent = Any
 
 # Bounds memory (one rendered segment string per slot), not connections:
@@ -324,9 +324,9 @@ def llm_scanner(
     )
 
     async def scan(transcript: Transcript) -> Result:
-        # scout-lite：会话总是已加载的 Transcript（scout 还支持流式句柄）。
+        # sounding：会话总是已加载的 Transcript（scout 还支持流式句柄）。
         if timeline is not None:
-            raise ValueError("scout-lite transcripts have no timelines")
+            raise ValueError("sounding transcripts have no timelines")
 
         # Resolve the model once — defers role resolution to scan time
         resolved_model = get_model(model, role=model_role)
@@ -429,7 +429,7 @@ def llm_scanner(
             )
             return await aggregate_results(
                 results=materialized_results,
-                timeline=False,  # scout-lite：会话没有时间线
+                timeline=False,  # sounding：会话没有时间线
                 answer=answer,
                 reducer=reducer,
             )

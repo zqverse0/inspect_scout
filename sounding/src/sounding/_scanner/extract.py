@@ -1,4 +1,4 @@
-# 摘自 inspect_scout 7521262 src/inspect_scout/_scanner/extract.py（MIT）。改动：导入改指 scout_lite 的替身。
+# 摘自 inspect_scout 7521262 src/inspect_scout/_scanner/extract.py（MIT）。改动：导入改指 sounding 的替身。
 import json
 import re
 from dataclasses import dataclass

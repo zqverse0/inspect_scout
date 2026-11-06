@@ -1,4 +1,4 @@
-"""把 inspect_scout 与 scout_lite 包成同名接口，供场景调用。"""
+"""把 inspect_scout 与 sounding 包成同名接口，供场景调用。"""
 
 from __future__ import annotations
 
@@ -26,17 +26,18 @@ def scout() -> Any:
 
 
 def lite() -> Any:
-    import scout_lite
-    from scout_lite.berth import chat_messages
+    from sounding.berth import chat_messages
+
+    import sounding
 
     return types.SimpleNamespace(
-        name="scout_lite",
-        llm_scanner=scout_lite.llm_scanner,
-        grep_scanner=scout_lite.grep_scanner,
-        Transcript=scout_lite.Transcript,
-        AnswerMultiLabel=scout_lite.AnswerMultiLabel,
-        AnswerStructured=scout_lite.AnswerStructured,
-        MessagesPreprocessor=scout_lite.MessagesPreprocessor,
-        get_model=scout_lite.get_model,
+        name="sounding",
+        llm_scanner=sounding.llm_scanner,
+        grep_scanner=sounding.grep_scanner,
+        Transcript=sounding.Transcript,
+        AnswerMultiLabel=sounding.AnswerMultiLabel,
+        AnswerStructured=sounding.AnswerStructured,
+        MessagesPreprocessor=sounding.MessagesPreprocessor,
+        get_model=sounding.get_model,
         chat_messages=chat_messages,
     )

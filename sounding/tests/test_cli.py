@@ -1,4 +1,4 @@
-"""scout-lite scan：配置 → 扫描器的翻译、每题独立出错、输出形状。"""
+"""sounding scan：配置 → 扫描器的翻译、每题独立出错、输出形状。"""
 
 from __future__ import annotations
 
@@ -11,9 +11,10 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 
 from mock_openai import MockOpenAI, text_reply, tool_reply  # noqa: E402
 from scenarios import SESSION  # noqa: E402
-from scout_lite import Transcript  # noqa: E402
-from scout_lite.berth import chat_messages  # noqa: E402
-from scout_lite.cli import scan  # noqa: E402
+from sounding.berth import chat_messages  # noqa: E402
+from sounding.cli import scan  # noqa: E402
+
+from sounding import Transcript  # noqa: E402
 
 CONFIG = {
     "model": "openai-api/berth/deepseek-flash",

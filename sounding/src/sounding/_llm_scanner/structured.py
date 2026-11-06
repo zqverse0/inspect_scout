@@ -1,4 +1,4 @@
-# 摘自 inspect_scout 7521262 src/inspect_scout/_llm_scanner/structured.py（MIT）。改动：导入改指 scout_lite 的替身。
+# 摘自 inspect_scout 7521262 src/inspect_scout/_llm_scanner/structured.py（MIT）。改动：导入改指 sounding 的替身。
 import inspect
 import json
 from collections.abc import Sequence
