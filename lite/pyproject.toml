@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scout-lite"
+version = "0.1.0"
+description = "Single-transcript scanning extracted from inspect_scout, for Berth."
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "anyio>=4",
+    "jinja2>=3",
+    "jsonschema>=4",
+    "pydantic>=2.11",
+    "tiktoken>=0.7",
+    "typing_extensions>=4.9",
+]
+
+[project.scripts]
+scout-lite = "scout_lite.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/scout_lite"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
