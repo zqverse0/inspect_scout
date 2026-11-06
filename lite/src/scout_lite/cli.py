@@ -28,6 +28,7 @@ import json
 import os
 import secrets
 import sys
+from importlib.metadata import version
 from typing import Any
 
 from pydantic import Field, create_model
@@ -136,6 +137,9 @@ async def scan(
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(prog="scout-lite")
+    parser.add_argument(
+        "--version", action="version", version=f"scout-lite {version('scout-lite')}"
+    )
     sub = parser.add_subparsers(dest="command", required=True)
     scan_parser = sub.add_parser("scan", help="扫描一个会话，结果 JSON 输出到 stdout")
     scan_parser.add_argument(
@@ -144,7 +148,9 @@ def main(argv: list[str] | None = None) -> None:
     scan_parser.add_argument(
         "--file", help="改为读这个文件：`session show --messages` 的输出"
     )
-    scan_parser.add_argument("--config", required=True, help="问题配置 JSON 文件")
+    scan_parser.add_argument(
+        "--config", required=True, help="问题配置 JSON 文件；`-` 从 stdin 读"
+    )
     scan_parser.add_argument(
         "--project", default=".", help="Berth 项目（名称、id 或路径）"
     )
@@ -154,8 +160,11 @@ def main(argv: list[str] | None = None) -> None:
 
     if not args.session and not args.file:
         parser.error("give a session id or --file")
-    with open(args.config, encoding="utf-8") as f:
-        config = json.load(f)
+    if args.config == "-":
+        config = json.load(sys.stdin)
+    else:
+        with open(args.config, encoding="utf-8") as f:
+            config = json.load(f)
     if args.file:
         with open(args.file, encoding="utf-8") as f:
             shown = json.load(f)
